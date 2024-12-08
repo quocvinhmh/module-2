@@ -1,4 +1,4 @@
-package ss1.demo;
+package baitap2024.demo;
 
 public class demothamchieu {
     public static void main(String[] args) {

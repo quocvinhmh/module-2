@@ -1,4 +1,4 @@
-package ss1.bai_tap;
+package baitap2024.bai_tap;
 
 public class nhohontram {
     public static void main(String[] args) {
