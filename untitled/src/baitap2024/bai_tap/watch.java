@@ -1,23 +1,36 @@
 package baitap2024.bai_tap;
-import java.time.Duration;
-import java.time.Instant;
 public class watch {
-    Instant start;
-    Instant end;
-    public watch() {
-        this.start = Instant.now();
+    int timestard;
+    int timestop;
+
+    public watch(int timestard, int timestop) {
+        this.timestard = timestard;
+        this.timestop = timestop;
     }
-    public Instant getStart() {
-        return start;
+
+    public int getTimestard() {
+        return timestard;
     }
-    public void setStart(Instant start) {
-        this.start = start;
+
+    public void setTimestard(int timestard) {
+        this.timestard = timestard;
     }
-    public Instant getEnd() {
-        return end;
+
+    public int getTimestop() {
+        return timestop;
     }
-    public void setEnd(Instant end) {
-        this.end = end;
+
+    public void setTimestop(int timestop) {
+        this.timestop = timestop;
+    }
+    public String toString() {
+        System.out.println("thời gian bắt đầu: "+ getTimestard());
+        for (int i = 0; i < getTimestop(); i++) {
+            System.out.println(i+"s");
+        }
+        System.out.println("thời gian kết thúc: ");
+        return "timestard: " + getTimestard() + ", timestop: " + getTimestop();
     }
 }
+
 
