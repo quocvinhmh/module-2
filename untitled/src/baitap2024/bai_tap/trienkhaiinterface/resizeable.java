@@ -1,8 +1,8 @@
 package baitap2024.bai_tap.trienkhaiinterface;
 
 public class resizeable extends shape implements thaydoi {
-    private double width;
-    private double length;
+    private double width = 1.0;
+    private double length= 1.0;
 
     public resizeable(double width, double length) {
         this.width = width;
@@ -13,6 +13,10 @@ public class resizeable extends shape implements thaydoi {
         super(color, filled);
         this.width = width;
         this.length = length;
+    }
+
+    public resizeable() {
+
     }
 
     public double getWidth() {
