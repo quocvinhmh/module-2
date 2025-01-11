@@ -6,7 +6,7 @@ import java.util.Stack;
 
 public class IsPalindrome {
     public String isPalindrome(String input) {
-        Stack<Character> stack = new Stack<Character>();
+        Stack<Character> stack = new Stack<>();
         Queue<Character> queue = new LinkedList<>();
         for (int i = 0; i < input.length(); i++) {
             char c = input.charAt(i);
