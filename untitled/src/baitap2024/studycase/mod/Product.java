@@ -1,15 +1,12 @@
-package baitap2024.baitap_quan_ly_khach_hang.model;
+package baitap2024.studycase.mod;
 
-import java.io.Serializable;
-
-public class Student {
+public class Product {
     private int id;
     private String name;
-
-    public Student() {
+    public Product() {
     }
 
-    public Student(int id, String name) {
+    public Product(int id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -26,16 +23,18 @@ public class Student {
         return name;
     }
 
-    public void setName(String name) {
+    public void setName() {
         this.name = name;
+    }
+    public String getInfoProduct() {
+        return this.id + "," + this.name;
     }
 
     @Override
     public String toString() {
-        return "Student{" +
+        return "Product{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';
     }
 }
-

@@ -2,8 +2,6 @@ package baitap2024.baitap_quan_ly_khach_hang.service;
 
 import baitap2024.baitap_quan_ly_khach_hang.model.Student;
 
-import java.util.Arrays;
-import java.util.Collections;
 
 public class StudentService implements IStudentService {
     public static Object delete;
