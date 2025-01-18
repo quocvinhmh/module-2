@@ -1,4 +1,4 @@
-package baitap2024.studycase.controll;
+package baitap2024.copytofile.controll;
 
 public class view {
     public static void main(String[] args) {

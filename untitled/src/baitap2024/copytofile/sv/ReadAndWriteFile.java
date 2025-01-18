@@ -1,6 +1,4 @@
-package baitap2024.studycase.sv;
-
-import baitap2024.studycase.mod.Product;
+package baitap2024.copytofile.sv;
 
 import java.io.*;
 import java.util.ArrayList;

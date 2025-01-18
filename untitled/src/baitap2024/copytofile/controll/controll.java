@@ -1,7 +1,7 @@
-package baitap2024.studycase.controll;
+package baitap2024.copytofile.controll;
 
-import baitap2024.studycase.mod.Product;
-import baitap2024.studycase.sv.ProductService;
+import baitap2024.copytofile.mod.Product;
+import baitap2024.copytofile.sv.ProductService;
 
 import java.util.List;
 import java.util.Scanner;

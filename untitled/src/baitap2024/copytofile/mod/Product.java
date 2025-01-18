@@ -1,4 +1,4 @@
-package baitap2024.studycase.mod;
+package baitap2024.copytofile.mod;
 
 public class Product {
     private int id;
