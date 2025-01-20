@@ -1,17 +1,17 @@
-package baitap2024.casesudy.mod;
+package baitap2024.casesudy.model;
 
-public class xetai extends xe{
+public class Vehicle extends Truck {
     private float taitrong;
-public xetai() {
+public Vehicle() {
 
 }
 
-    public xetai(String bienkiemsoat, String hangsanxuat, int namsanxuat, String chusohuu, float taitrong) {
+    public Vehicle(String bienkiemsoat, String hangsanxuat, int namsanxuat, String chusohuu, float taitrong) {
         super(bienkiemsoat, hangsanxuat, namsanxuat, chusohuu);
         this.taitrong = taitrong;
     }
 
-    public xetai(int taitrong) {
+    public Vehicle(int taitrong) {
         this.taitrong = taitrong;
     }
 

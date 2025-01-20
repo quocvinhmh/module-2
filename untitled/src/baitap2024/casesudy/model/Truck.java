@@ -1,19 +1,19 @@
-package baitap2024.casesudy.mod;
+package baitap2024.casesudy.model;
 
-public class xe {
+public class Truck {
     private String Bienkiemsoat;
     private String Hangsanxuat;
     private int Namsanxuat;
     private String Chusohuu;
 
-    public xe(String bienkiemsoat, String hangsanxuat, int namsanxuat, String chusohuu) {
+    public Truck(String bienkiemsoat, String hangsanxuat, int namsanxuat, String chusohuu) {
         Bienkiemsoat = bienkiemsoat;
         Hangsanxuat = hangsanxuat;
         Namsanxuat = namsanxuat;
         Chusohuu = chusohuu;
     }
 
-    public xe() {
+    public Truck() {
 
     }
 

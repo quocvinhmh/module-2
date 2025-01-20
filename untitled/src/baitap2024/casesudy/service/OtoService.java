@@ -1,25 +1,26 @@
-package baitap2024.casesudy.sv;
+package baitap2024.casesudy.service;
 
-import baitap2024.casesudy.mod.oto;
+import baitap2024.casesudy.model.Car;
+import baitap2024.casesudy.util.ReadAndWrite;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class otosv implements IDsv{
+public class OtoService implements IXeService {
 
     @Override
     public void showxe() {
-        List<oto> productList = new ArrayList<oto>();
+        List<Car> productList = new ArrayList<Car>();
         productList = ReadAndWrite.ReadFile();
-        for (oto o : productList) {
+        for (Car o : productList) {
             System.out.println(o);
         }
     }
 
     @Override
     public boolean delete() {
-        List<oto> productList = new ArrayList<oto>();
+        List<Car> productList = new ArrayList<Car>();
         productList = ReadAndWrite.ReadFile();
         Scanner sc = new Scanner(System.in);
        try {
@@ -48,7 +49,7 @@ public class otosv implements IDsv{
     @Override
     public boolean addxe() {
         Scanner scanner = new Scanner(System.in);
-        List<oto> oToList = new ArrayList<>();
+        List<Car> oToList = new ArrayList<>();
         oToList = ReadAndWrite.ReadFile();
         try {
             System.out.println("Biển kiểm soát cần thêm mới:");
@@ -63,7 +64,7 @@ public class otosv implements IDsv{
             int soChoNgoi = Integer.parseInt(scanner.nextLine());
             System.out.println("Kiểu xe cần thêm mới:");
             String kieuXe = scanner.nextLine();
-            oToList.add(new oto(bienKiemSoat, hangSanXuat, namSanXuat, chuSoHuu, soChoNgoi, kieuXe));
+            oToList.add(new Car(bienKiemSoat, hangSanXuat, namSanXuat, chuSoHuu, soChoNgoi, kieuXe));
             ReadAndWrite.WriteFile(oToList);
         } catch (Exception e) {
             e.printStackTrace();

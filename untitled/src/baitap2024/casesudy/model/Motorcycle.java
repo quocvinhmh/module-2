@@ -1,12 +1,12 @@
-package baitap2024.casesudy.mod;
+package baitap2024.casesudy.model;
 
-public class xemay extends xe {
+public class Motorcycle extends Truck {
     private float congxuat;
-public xemay() {
+public Motorcycle() {
 
 }
 
-    public xemay(String bienkiemsoat, String hangsanxuat, int namsanxuat, String chusohuu, float congxuat) {
+    public Motorcycle(String bienkiemsoat, String hangsanxuat, int namsanxuat, String chusohuu, float congxuat) {
         super(bienkiemsoat, hangsanxuat, namsanxuat, chusohuu);
         this.congxuat = congxuat;
     }

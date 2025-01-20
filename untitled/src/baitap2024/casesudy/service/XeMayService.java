@@ -1,18 +1,19 @@
-package baitap2024.casesudy.sv;
+package baitap2024.casesudy.service;
 
-import baitap2024.casesudy.mod.xemay;
+import baitap2024.casesudy.model.Motorcycle;
+import baitap2024.casesudy.util.ReadAndWrite;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class xemaysv implements IDsv{
+public class XeMayService implements IXeService {
 
     @Override
     public void showxe() {
-        List<xemay> list = new ArrayList<>();
+        List<Motorcycle> list = new ArrayList<>();
         list = ReadAndWrite.ReadFileXemay();
-        for (xemay x : list) {
+        for (Motorcycle x : list) {
             System.out.println(x);
         }
     }
@@ -20,7 +21,7 @@ public class xemaysv implements IDsv{
     @Override
     public boolean delete() {
         Scanner sc = new Scanner(System.in);
-        List<xemay> list = new ArrayList<>();
+        List<Motorcycle> list = new ArrayList<>();
         list = ReadAndWrite.ReadFileXemay();
         try {
             System.out.println("Biển kiểm soát: ");
@@ -45,7 +46,7 @@ public class xemaysv implements IDsv{
     return true;}
     @Override
     public boolean addxe() {
-        List<xemay> xeMayList = new ArrayList<>();
+        List<Motorcycle> xeMayList = new ArrayList<>();
         xeMayList = ReadAndWrite.ReadFileXemay();
         Scanner scanner = new Scanner(System.in);
         try {
@@ -59,7 +60,7 @@ public class xemaysv implements IDsv{
             String chuSoHuu = scanner.nextLine();
             System.out.println("Công suất cần thêm mới:");
             float congSuat = Float.parseFloat(scanner.nextLine());
-            xeMayList.add(new xemay(bienKiemSoat, hangSanXuat, namSanXuat, chuSoHuu, congSuat));
+            xeMayList.add(new Motorcycle(bienKiemSoat, hangSanXuat, namSanXuat, chuSoHuu, congSuat));
             ReadAndWrite.WriteFileXemay(xeMayList);
         } catch (Exception e) {
             e.printStackTrace();

@@ -1,8 +1,8 @@
-package baitap2024.casesudy.sv;
+package baitap2024.casesudy.util;
 
-import baitap2024.casesudy.mod.oto;
-import baitap2024.casesudy.mod.xemay;
-import baitap2024.casesudy.mod.xetai;
+import baitap2024.casesudy.model.Car;
+import baitap2024.casesudy.model.Motorcycle;
+import baitap2024.casesudy.model.Vehicle;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -10,11 +10,11 @@ import java.util.List;
 
 public class ReadAndWrite {
     public static final String FILE_OTO = "src/baitap2024/casesudy/file/oto.csv";
-    public static final String FILE_XEMAY = "src/baitap2024/casesudy/file/xemay.csv";
-    public static final String FILE_XETAI = "src/baitap2024/casesudy/file/xetai.csv";
+    public static final String FILE_XEMAY = "src/baitap2024/casesudy/file/xeMay.csv";
+    public static final String FILE_XETAI = "src/baitap2024/casesudy/file/xeTai.csv";
 
-    public static List<oto> ReadFile() {
-        List<oto> lst = new ArrayList<>();
+    public static List<Car> ReadFile() {
+        List<Car> lst = new ArrayList<>();
         File file = new File(FILE_OTO);
         FileReader fr = null;
         BufferedReader br = null;
@@ -31,7 +31,7 @@ public class ReadAndWrite {
                     String chuSoHuu = line.split(",")[3];
                     int soChoNgoi = Integer.parseInt(line.split(",")[4]);
                     String kieuXe = line.split(",")[5];
-                    lst.add(new oto(bienKiemSoat, tenHangSanXuat, namSanXuat, chuSoHuu, soChoNgoi, kieuXe));
+                    lst.add(new Car(bienKiemSoat, tenHangSanXuat, namSanXuat, chuSoHuu, soChoNgoi, kieuXe));
                 }
             } while (line != null);
             br.close();
@@ -45,8 +45,8 @@ public class ReadAndWrite {
         return lst;
     }
 
-    public static List<xemay> ReadFileXemay() {
-        List<xemay> lst = new ArrayList<>();
+    public static List<Motorcycle> ReadFileXemay() {
+        List<Motorcycle> lst = new ArrayList<>();
         File file = new File(FILE_XEMAY);
         FileReader fr = null;
         BufferedReader br = null;
@@ -62,7 +62,7 @@ public class ReadAndWrite {
                     String hangsanxuat = line.split(",")[2];
                     int namsanxuat = Integer.parseInt(line.split(",")[3]);
                     String chusohuu = line.split(",")[4];
-                    lst.add(new xemay(bienkiemsoat, hangsanxuat, namsanxuat, chusohuu, congsuat));
+                    lst.add(new Motorcycle(bienkiemsoat, hangsanxuat, namsanxuat, chusohuu, congsuat));
                 }
             } while (line != null);
             br.close();
@@ -76,8 +76,8 @@ public class ReadAndWrite {
         return lst;
     }
 
-    public static List<xetai> ReadFileXemayXema() {
-        List<xetai> lst = new ArrayList<>();
+    public static List<Vehicle> ReadFileXemayXema() {
+        List<Vehicle> lst = new ArrayList<>();
         File file = new File(FILE_XETAI);
         FileReader fr = null;
         BufferedReader br = null;
@@ -89,12 +89,12 @@ public class ReadAndWrite {
             do {
                 line = br.readLine();
                 if (line != null) {
-                    float taitrong = Integer.parseInt(line.split(",")[0]);
-                    String bienkiemsoat = line.split(",")[1];
-                    String hangsanxuat = line.split(",")[2];
-                    int namsanxuat = Integer.parseInt(line.split(",")[3]);
-                    String chusohuu = line.split(",")[4];
-                    lst.add(new xetai(bienkiemsoat, hangsanxuat, namsanxuat, chusohuu, taitrong));
+                    float taitrong = Integer.parseInt(line.split(",")[4]);
+                    String bienkiemsoat = line.split(",")[0];
+                    String hangsanxuat = line.split(",")[1];
+                    int namsanxuat = Integer.parseInt(line.split(",")[2]);
+                    String chusohuu = line.split(",")[3];
+                    lst.add(new Vehicle(bienkiemsoat, hangsanxuat, namsanxuat, chusohuu, taitrong));
                 }
             }while (line != null);
             br.close();
@@ -108,12 +108,12 @@ public class ReadAndWrite {
         }
     return lst;
     }
-    public static void WriteFile(List<oto> lst) throws IOException {
+    public static void WriteFile(List<Car> lst) throws IOException {
         File file = new File(FILE_OTO);
         FileWriter fr = new FileWriter(file,false);
         BufferedWriter bw = new BufferedWriter(fr);
         boolean flag = true ;
-        for (oto o : lst) {
+        for (Car o : lst) {
             if (!flag) {
                 bw.newLine();
             }
@@ -122,12 +122,12 @@ public class ReadAndWrite {
         }
         bw.close();
     }
-    public static void WriteFileXemay(List<xemay> lst) throws IOException {
+    public static void WriteFileXemay(List<Motorcycle> lst) throws IOException {
         File file = new File(FILE_XEMAY);
         FileWriter fr = new FileWriter(file,false);
         BufferedWriter bw = new BufferedWriter(fr);
         boolean flag = true ;
-        for (xemay o : lst) {
+        for (Motorcycle o : lst) {
             if (!flag) {
                 bw.newLine();
             }
@@ -136,12 +136,12 @@ public class ReadAndWrite {
         }
         bw.close();
     }
-    public static void WriteFileXetai(List<xetai> lst) throws IOException {
+    public static void WriteFileXetai(List<Vehicle> lst) throws IOException {
         File file = new File(FILE_XETAI);
         FileWriter fr = new FileWriter(file,false);
         BufferedWriter bw = new BufferedWriter(fr);
         boolean flag = true ;
-        for (xetai o : lst) {
+        for (Vehicle o : lst) {
             if (!flag) {
                 bw.newLine();
             }

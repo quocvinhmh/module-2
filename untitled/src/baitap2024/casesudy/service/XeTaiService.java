@@ -1,24 +1,25 @@
-package baitap2024.casesudy.sv;
+package baitap2024.casesudy.service;
 
-import baitap2024.casesudy.mod.xetai;
+import baitap2024.casesudy.model.Vehicle;
+import baitap2024.casesudy.util.ReadAndWrite;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class xetaisv implements IDsv{
+public class XeTaiService implements IXeService {
     @Override
     public void showxe() {
-        List<xetai> xetaiList = new ArrayList<>();
-        xetaiList = ReadAndWrite.ReadFileXemayXema();
-        for (xetai xetai : xetaiList){
-            System.out.println(xetai);
+        List<Vehicle> vehicleList = new ArrayList<>();
+        vehicleList = ReadAndWrite.ReadFileXemayXema();
+        for (Vehicle Vehicle : vehicleList){
+            System.out.println(Vehicle);
         }
     }
 
     @Override
     public boolean delete() {
-        List<xetai> xeTaiList = new ArrayList<>();
+        List<Vehicle> xeTaiList = new ArrayList<>();
         xeTaiList = ReadAndWrite.ReadFileXemayXema();
         Scanner scanner = new Scanner(System.in);
         try {
@@ -46,7 +47,7 @@ public class xetaisv implements IDsv{
 
     @Override
     public boolean addxe() {
-        List<xetai> xeTaiList = new ArrayList<>();
+        List<Vehicle> xeTaiList = new ArrayList<>();
         xeTaiList = ReadAndWrite.ReadFileXemayXema();
         Scanner scanner = new Scanner(System.in);
         try {
@@ -60,7 +61,7 @@ public class xetaisv implements IDsv{
             String chuSoHuu = scanner.nextLine();
             System.out.println("Tải trọng cần thêm mới:");
             float taiTrong = Float.parseFloat(scanner.nextLine());
-            xeTaiList.add(new xetai(bienKiemSoat, hangSanXuat, namSanXuat, chuSoHuu, taiTrong));
+            xeTaiList.add(new Vehicle(bienKiemSoat, hangSanXuat, namSanXuat, chuSoHuu, taiTrong));
             ReadAndWrite.WriteFileXetai(xeTaiList);
         } catch (Exception e) {
             e.printStackTrace();

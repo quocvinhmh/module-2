@@ -1,15 +1,15 @@
-package baitap2024.casesudy.view;
+package baitap2024.casesudy.controller;
 
-import baitap2024.casesudy.sv.otosv;
-import baitap2024.casesudy.sv.xemaysv;
-import baitap2024.casesudy.sv.xetaisv;
+import baitap2024.casesudy.service.OtoService;
+import baitap2024.casesudy.service.XeMayService;
+import baitap2024.casesudy.service.XeTaiService;
 
 import java.util.Scanner;
 
-public class controll {
-    otosv otosv = new otosv();
-    xemaysv xemaysv = new xemaysv();
-    xetaisv Xetai = new xetaisv();
+public class VehicleController {
+    OtoService OtoService = new OtoService();
+    XeMayService XeMayService = new XeMayService();
+    XeTaiService Xetai = new XeTaiService();
     Scanner scanner = new Scanner(System.in);
     int choose = 0;
 
@@ -38,14 +38,14 @@ public class controll {
                             }
                             break;
                         case 2:
-                            if (!otosv.addxe()) {
+                            if (!OtoService.addxe()) {
                                 System.out.println("Thêm ô tô thất bại");
                             } else {
                                 System.out.println("Thêm ô tô thành công");
                             }
                             break;
                         case 3:
-                            if (!xemaysv.addxe()) {
+                            if (!XeMayService.addxe()) {
                                 System.out.println("Thêm xe máy thất bại");
                             } else {
                                 System.out.println("Thêm xe máy thành công");
@@ -64,10 +64,10 @@ public class controll {
                             Xetai.showxe();
                             break;
                         case 2:
-                            otosv.showxe();
+                            OtoService.showxe();
                             break;
                         case 3:
-                            xemaysv.showxe();
+                            XeMayService.showxe();
                             break;
                     }
                     break;
@@ -86,14 +86,14 @@ public class controll {
                             }
                             break;
                         case 2:
-                            if (!otosv.delete()) {
+                            if (!OtoService.delete()) {
                                 System.out.println("Xóa ô tô thất bại");
                             } else {
                                 System.out.println("Xóa ô tô thành công");
                             }
                             break;
                         case 3:
-                            if (!xemaysv.delete()) {
+                            if (!XeMayService.delete()) {
                                 System.out.println("Xóa xe máy thất bại");
                             } else {
                                 System.out.println("Xóa xe máy thành công");

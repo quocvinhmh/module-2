@@ -1,11 +1,11 @@
-package baitap2024.casesudy.mod;
+package baitap2024.casesudy.model;
 
-public class oto extends xe {
+public class Car extends Truck {
     private int socho;
     private String kieuxe;
-public oto(){
+public Car(){
 }
-    public oto(String bienkiemsoat, String hangsanxuat, int namsanxuat, String chusohuu, int socho, String kieuxe) {
+    public Car(String bienkiemsoat, String hangsanxuat, int namsanxuat, String chusohuu, int socho, String kieuxe) {
         super(bienkiemsoat,hangsanxuat,namsanxuat,chusohuu);
         this.socho = socho;
         this.kieuxe = kieuxe;
