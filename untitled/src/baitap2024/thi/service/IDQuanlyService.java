@@ -1,9 +1,12 @@
 package baitap2024.thi.service;
 
-import java.io.IOException;
+import baitap2024.thi.mod.QuanLy;
 
-public interface IDQuanlyservice {
-    void showxe();
+import java.io.IOException;
+import java.util.List;
+
+public interface IDQuanlyService {
+    List<QuanLy> show();
     boolean delete();
     boolean add();
     boolean update() throws IOException;

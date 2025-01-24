@@ -1,13 +1,13 @@
 package baitap2024.thi.controller;
 
-import baitap2024.thi.service.Quanlyservice;
+import baitap2024.thi.service.QuanlyService;
 
 import java.io.IOException;
 import java.util.Scanner;
 
 public class Controll {
     Scanner scanner = new Scanner(System.in);
-    Quanlyservice quanlyservice = new Quanlyservice();
+    QuanlyService quanlyservice = new QuanlyService();
     boolean e = true;
 
     public void Controll() throws IOException {
@@ -24,25 +24,26 @@ public class Controll {
 
             int choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
-                case 1: quanlyservice.showxe();
+                case 1: quanlyservice.show();
                     break;
                 case 2:
-if (!quanlyservice.add()){
+if (quanlyservice.add()){
     System.out.println("Thêm mới thành công");
 }else {
     System.out.println("Thêm mới thất bại");
 }
                     break;
                 case 3:
-if(!quanlyservice.delete()){
+if(quanlyservice.delete()){
     System.out.println("Xóa thành công");
 }else {
-    System.out.println("Xóa thất bại");
+    System.out.println("Không tìm thấy số điện thoại\n" +
+            "Xóa thất bại!");
 }
 
                     break;
                 case 4:
-if (!quanlyservice.update()){
+if (quanlyservice.update()){
     System.out.println("Update thành công");
 }else {
     System.out.println("Update Xóa thất bại");

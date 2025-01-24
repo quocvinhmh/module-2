@@ -1,7 +1,7 @@
 package baitap2024.thi.mod;
 
 public class QuanLy {
-    private int sdt;
+    private String sdt;
     private int nhomdanhba;
     private String hovaten;
     private String gioitinh;
@@ -13,7 +13,7 @@ public class QuanLy {
 
     }
 
-    public QuanLy(int sdt, int nhomdanhba, String hovaten, String gioitinh, String diachi, String ngaysinh, String email) {
+    public QuanLy(String sdt, int nhomdanhba, String hovaten, String gioitinh, String diachi, String ngaysinh, String email) {
         this.sdt = sdt;
         this.nhomdanhba = nhomdanhba;
         this.hovaten = hovaten;
@@ -23,11 +23,11 @@ public class QuanLy {
         this.email = email;
     }
 
-    public int getSdt() {
+    public String getSdt() {
         return sdt;
     }
 
-    public void setSdt(int sdt) {
+    public void setSdt(String sdt) {
         this.sdt = sdt;
     }
 

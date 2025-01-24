@@ -20,7 +20,7 @@ public class ReadAndWrite {
            String line = null;
            do {
                if ((line = br.readLine())!= null) {
-                  int sdt = Integer.parseInt(line.split(",")[0]);
+                  String sdt =line.split(",")[0];
                   int nhom = Integer.parseInt(line.split(",")[1]);
 String hovaten = line.split(",")[2];
 String sex = line.split(",")[3];
@@ -51,6 +51,7 @@ danhba.add(new QuanLy(sdt,nhom,hovaten,sex,id,born,email));
             }
             bw.write(o.getSdt() + "," + o.getNhomdanhba() + "," + o.getHovaten()
                     + "," + o.getGioitinh() + "," + o.getDiachi()+","+o.getNgaysinh()+","+o.getEmail());
+            bw.newLine();
         }
         bw.close();
     }
