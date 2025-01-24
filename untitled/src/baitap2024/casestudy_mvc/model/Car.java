@@ -1,4 +1,4 @@
-package baitap2024.casesudy.model;
+package baitap2024.casestudy_mvc.model;
 
 public class Car extends Truck {
     private int socho;

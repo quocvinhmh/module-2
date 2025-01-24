@@ -12,13 +12,14 @@ public class controll {
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println("Chọn chức năng: \n" +
-                    "1. Xem toàn bộ sản phẩm\n" +
-                    "2. Thêm sản phẩm mới\n" +
+                    "1. Xem danh sách\n" +
+                    "2. Thêm mới\n" +
                     "3. Xóa sản phẩm\n" +
                     "4. Chỉnh sửa thông tin sản phẩm\n" +
                     "5. Sắp xếp sản phẩm theo ID\n" +
-                    "6. Sắp xếp sản phẩm theo tên\n" +
-                    "7. Thoát.");
+                    "6. Đọc từ file\n" +
+                    "7. Ghi từ file\n"+
+                    "8. Thoát.");
 
             int choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {
@@ -65,6 +66,10 @@ if (isUpdated) {
                     productService.Byname();
                     break;
                 case 7:
+                    productService = new ProductService();
+
+
+                case 8:
                     System.exit(0);
             }
         }

@@ -1,7 +1,7 @@
-package baitap2024.casesudy.service;
+package baitap2024.casestudy_mvc.service;
 
-import baitap2024.casesudy.model.Car;
-import baitap2024.casesudy.util.ReadAndWrite;
+import baitap2024.casestudy_mvc.model.Car;
+import baitap2024.casestudy_mvc.util.ReadAndWrite;
 
 import java.util.ArrayList;
 import java.util.List;

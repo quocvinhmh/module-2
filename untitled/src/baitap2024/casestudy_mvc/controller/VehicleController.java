@@ -1,8 +1,8 @@
-package baitap2024.casesudy.controller;
+package baitap2024.casestudy_mvc.controller;
 
-import baitap2024.casesudy.service.OtoService;
-import baitap2024.casesudy.service.XeMayService;
-import baitap2024.casesudy.service.XeTaiService;
+import baitap2024.casestudy_mvc.service.OtoService;
+import baitap2024.casestudy_mvc.service.XeMayService;
+import baitap2024.casestudy_mvc.service.XeTaiService;
 
 import java.util.Scanner;
 

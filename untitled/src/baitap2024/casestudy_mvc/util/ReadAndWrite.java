@@ -1,8 +1,8 @@
-package baitap2024.casesudy.util;
+package baitap2024.casestudy_mvc.util;
 
-import baitap2024.casesudy.model.Car;
-import baitap2024.casesudy.model.Motorcycle;
-import baitap2024.casesudy.model.Vehicle;
+import baitap2024.casestudy_mvc.model.Car;
+import baitap2024.casestudy_mvc.model.Motorcycle;
+import baitap2024.casestudy_mvc.model.Vehicle;
 
 import java.io.*;
 import java.util.ArrayList;

@@ -1,4 +1,4 @@
-package baitap2024.casesudy.service;
+package baitap2024.casestudy_mvc.service;
 
 public interface IXeService {
     void showxe();

@@ -23,7 +23,6 @@ public class ReadAndWriteFile {
             throw new RuntimeException(e);
         }finally {
             try {
-                br.close();
                 fr.close();
             } catch (IOException e) {
                 throw new RuntimeException(e);

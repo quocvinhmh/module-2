@@ -1,6 +1,6 @@
-package baitap2024.casesudy.view;
+package baitap2024.casestudy_mvc.view;
 
-import baitap2024.casesudy.controller.VehicleController;
+import baitap2024.casestudy_mvc.controller.VehicleController;
 
 public class Main {
     public static void main(String[] args){
