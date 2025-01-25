@@ -5,22 +5,23 @@ import baitap2024.thi.service.QuanlyService;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class Controll {
+public class ContactController {
     Scanner scanner = new Scanner(System.in);
     QuanlyService quanlyservice = new QuanlyService();
-    boolean e = true;
 
-    public void Controll() throws IOException {
+
+    public void Controls() throws IOException {
         while (true) {
-            System.out.println("Chọn chức năng: \n" +
-                    "1. Xem danh sách\n" +
-                    "2. Thêm mới\n" +
-                    "3. Xóa sản phẩm\n" +
-                    "4. Chỉnh sửa thông tin sản phẩm\n" +
-                    "5. Tìm Kiếm\n" +
-                    "6. Đọc từ file\n" +
-                    "7. Ghi từ file\n" +
-                    "8. Thoát.");
+            System.out.println("""
+                    Chọn chức năng:
+                    1. Xem danh sách
+                    2. Thêm mới
+                    3. Xóa sản phẩm
+                    4. Chỉnh sửa thông tin sản phẩm
+                    5. Tìm Kiếm
+                    6. Đọc từ file
+                    7. Ghi từ file
+                    8. Thoát.""");
 
             int choice = Integer.parseInt(scanner.nextLine());
             switch (choice) {

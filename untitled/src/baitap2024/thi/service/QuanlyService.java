@@ -1,184 +1,188 @@
 package baitap2024.thi.service;
 
-
-import baitap2024.thi.mod.QuanLy;
+import baitap2024.thi.mod.Contact;
 import baitap2024.thi.util.ReadAndWrite;
 
 import java.io.IOException;
-import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class QuanlyService implements IDQuanlyService {
+public class QuanlyService implements ContactService {
+    private static final String PHONE_REGEX = "^[0-9]{10}$";
+    private static final String EMAIL_REGEX = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,6}$";
+    private static final String ERROR_PHONE = "Số điện thoại phải có đúng 10 chữ số!";
+    private static final String ERROR_EMAIL = "Email không hợp lệ!";
+    private final List<Contact> danhBaList = new ArrayList<>(); // Dữ liệu trong bộ nhớ
+
     @Override
-    public List<QuanLy> show() {
-        List<QuanLy> productList = new ArrayList<>();
-        productList = ReadAndWrite.read();
-        for (QuanLy o : productList) {
-            System.out.println(o);
+    public void show() {
+        if (danhBaList.isEmpty()) {
+            System.out.println("Danh bạ hiện tại rỗng.");
+        } else {
+            for (Contact contact : danhBaList) {
+                System.out.println(contact);
+            }
         }
-        return productList;
     }
 
     @Override
-    public boolean delete() {
-        List<QuanLy> productList = new ArrayList<>();
-        productList = ReadAndWrite.read();
+    public boolean delete() throws IOException {
         Scanner sc = new Scanner(System.in);
+        System.out.println("Nhập số điện thoại cần xóa:");
+        String sdt = sc.nextLine();
+        if (!isValidPhone(sdt)) {
+            throw new IllegalArgumentException(ERROR_PHONE);
+        }
 
-        try {
-            System.out.println("Số điện thoại: ");
-           String name = sc.nextLine().replaceAll("[^\\d]", "");
-            if (name.length()!= 10){
-                throw new IllegalArgumentException("Số điện thoại phải có đúng 10 chữ số!");
-            }else {
-            for (int i = 0; i < productList.size(); i++) {
-                if (name.equals(productList.get(i).getSdt())) {
-                    System.out.println("   Xác nhận xoá  " + name + ":" + "\n" +
-                            "   1. Yes" + "\n" +
-                            "   2. No");
-                    int choice = Integer.parseInt(sc.nextLine());
-                    if (choice == 1) {
-                        productList.remove(i);
-                        ReadAndWrite.write(productList);
-                    } else {
-                        return true;
-                    }
+        if (sdt.length() != 10) {
+            System.out.println("Số điện thoại phải có đúng 10 chữ số!");
+            return false;
+        }
+
+        for (int i = 0; i < danhBaList.size(); i++) {
+            if (danhBaList.get(i).getSdt().equals(sdt)) {
+                System.out.println("Xác nhận xóa danh bạ với số điện thoại " + sdt + ": (Y để xác nhận)");
+                String choice = sc.nextLine().trim();
+                if (choice.equalsIgnoreCase("Y")) {
+                    danhBaList.remove(i);
+                    ReadAndWrite.write(danhBaList);
+                    System.out.println("Xóa thành công!");
+                    return true;
+                } else {
+                    System.out.println("Hủy xóa.");
+                    return false;
                 }
             }
-            }
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        }
+        System.out.println("Không tìm thấy danh bạ với số điện thoại trên.");
+        return false;
+    }
+
+    @Override
+    public boolean add() throws IOException {
+        Contact contact = nhapThongTinDanhBa();
+        if (contact != null) {
+            danhBaList.add(contact);
+            System.out.println("Thêm mới danh bạ thành công!");
+            return true;
         }
         return false;
     }
 
-
     @Override
-    public boolean add() {
-        Scanner scanner = new Scanner(System.in);
-        List<QuanLy> oToList = new ArrayList<>();
-        try {
-            System.out.println("Số điện thoại cần thêm mới:");
-            String sdt = scanner.nextLine().replaceAll("[^\\d]", "");
-            if (sdt.length()!= 10){
-                throw new IllegalArgumentException("Số điện thoại phải có đúng 10 chữ số!");
-            }
-            System.out.println("Nhóm danh bạ cần thêm mới:");
-            int nhom = Integer.parseInt(scanner.nextLine());
-            System.out.println("Họ và tên cần thêm mới:");
-            String hovaten = scanner.nextLine();
-            System.out.println("Giới tính cần thêm mới:");
-            String sex = scanner.nextLine();
-            System.out.println("Địa chỉ cần thêm mới:");
-            String id = scanner.nextLine();
-            System.out.println("Ngày sinh cần thêm mới:");
-            String born = scanner.nextLine();
-            System.out.println("Email cần thêm mới:");
-            String email = scanner.nextLine();
-            if (EmailValidator.isValidEmail(email)){
-                throw new IllegalArgumentException("Vui lòng nhập đúng định dạng Email!");
-            }
-            oToList.add(new QuanLy(sdt, nhom, hovaten, sex, id, born, email));
-            ReadAndWrite.write(oToList);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return true;
-    }
-
-    @Override
-    public boolean update() throws IOException {
-        List<QuanLy> oToList = new ArrayList<>();
-        oToList = ReadAndWrite.read();
+    public boolean update(){
         Scanner sc = new Scanner(System.in);
-        System.out.println("Nhập số điện thoại muốn sữa!");
-        String sdt1 = sc.nextLine();
-        if (sdt1.length()!= 10){
-            throw new IllegalArgumentException("Số điện thoại phải có đúng 10 chữ số!");
+        System.out.println("Nhập số điện thoại cần cập nhật:");
+        String sdt = sc.nextLine();
+        if (sdt.length() != 10) {
+            System.out.println("Số điện thoại phải có đúng 10 chữ số!");
+            return false;
         }
-        for (int i = 0; i < oToList.size(); i++) {
-            if (!sdt1.equals(oToList.get(i).getSdt())) {
-                oToList.remove(i);
-                System.out.println("Thêm mới: ");
-                System.out.println("Số điện thoại cần thêm mới:");
-                String sdt = sc.nextLine().replaceAll("[^\\d]", "");
-                if (sdt.length()!= 10){
-                    throw new IllegalArgumentException("Số điện thoại phải có đúng 10 chữ số!");
+
+        for (int i = 0; i < danhBaList.size(); i++) {
+            if (danhBaList.get(i).getSdt().equals(sdt)) {
+                System.out.println("Thông tin hiện tại: " + danhBaList.get(i));
+                Contact contactMoi = nhapThongTinDanhBa();
+                if (contactMoi != null) {
+                    danhBaList.set(i, contactMoi);
+                    System.out.println("Cập nhật thành công!");
+                    return true;
                 }
-                System.out.println("Nhóm danh bạ cần thêm mới:");
-                int nhom = Integer.parseInt(sc.nextLine());
-                System.out.println("Họ và tên cần thêm mới:");
-                String hovaten = sc.nextLine();
-                System.out.println("Giới tính cần thêm mới:");
-                String sex = sc.nextLine();
-                System.out.println("Địa chỉ cần thêm mới:");
-                String id = sc.nextLine();
-                System.out.println("Ngày sinh cần thêm mới:");
-                String born = sc.nextLine();
-                System.out.println("Email cần thêm mới:");
-                String email = sc.nextLine();
-                EmailValidator emailValidator = new EmailValidator();
-                if (!EmailValidator.isValidEmail(email)){
-                    throw new IllegalArgumentException("Vui lòng nhập đúng định Email!");
-                }
-                oToList.add(i, new QuanLy(sdt, nhom, hovaten, sex, id, born, email));
-                ReadAndWrite.write(oToList);
+                return false;
             }
         }
+        System.out.println("Không tìm thấy danh bạ với số điện thoại trên.");
         return false;
     }
 
     @Override
     public void tim() {
-        List<QuanLy> oToList = new ArrayList<>();
-        oToList = ReadAndWrite.read();
         Scanner sc = new Scanner(System.in);
-        String sdt = sc.nextLine();
-        System.out.println("Nhập số điện thoại muốn tìm");
-        if (sdt.length()!= 10){
-            throw new IllegalArgumentException("Số điện thoại phải có đúng 10 chữ số!");
-        }
-        for (QuanLy o : oToList) {
-            if (sdt.equals(o.getSdt())) {
-                System.out.println(o);
+        System.out.println("Nhập số điện thoại hoặc họ tên cần tìm:");
+        String keyword = sc.nextLine().toLowerCase();
+
+        boolean found = false;
+        for (Contact contact : danhBaList) {
+            if (contact.getSdt().contains(keyword) || contact.getHovaten().toLowerCase().contains(keyword)) {
+                System.out.println(contact);
+                found = true;
             }
+        }
+        if (!found) {
+            System.out.println("Không tìm thấy kết quả phù hợp.");
         }
     }
 
     @Override
-    public void readfile() throws IOException {
-        List<QuanLy> oToList = new ArrayList<>();
-        oToList = ReadAndWrite.read();
-        System.out.println("Đọc dữ liệu từ file:");
-        for (QuanLy o : oToList) {
-            System.out.println(o);
+    public void readfile()  {
+        List<Contact> dulieu = ReadAndWrite.read();
+        System.out.println("Đọc dữ liệu từ file thành công!");
+        for (Contact contact : dulieu) {
+            System.out.println(contact);
         }
     }
 
     @Override
     public void savefile() throws IOException {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Cảnh báo: Toàn bộ danh bạ trong bộ nhớ sẽ bị xóa.");
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Cảnh báo: Toàn bộ file hiện tại sẽ bị ghi đè.");
         System.out.println("Bạn có muốn tiếp tục không? (Y để xác nhận, nhấn phím khác để hủy):");
-        String choice = scanner.nextLine().trim();
-        if (!choice.equalsIgnoreCase("Y")) {
-            return;
-        }
-List<QuanLy> oToList = show();
-        if (oToList.isEmpty()) {
-            System.out.println("Danh bạ hiện tại rỗng. Không có gì để lưu!");
-            return;
-        }else {
-            for (int i = 0; i < oToList.size(); i++) {
-                oToList.remove(i);
-            }
-            ReadAndWrite.write(oToList);
-        }
+        String choice = sc.nextLine().trim();
 
-        System.out.println("Lưu danh bạ thành công!");
+        if (choice.equalsIgnoreCase("Y")) {
+            ReadAndWrite.write(danhBaList);
+            System.out.println("Lưu danh bạ thành công!");
+        } else {
+            System.out.println("Hủy lưu.");
+        }
     }
-        }
 
+    // Hàm nhập thông tin danh bạ
+    private Contact nhapThongTinDanhBa() {
+        Scanner sc = new Scanner(System.in);
+        try {
+            System.out.println("Nhập số điện thoại:");
+            String sdt = sc.nextLine();
+            if (sdt.length() != 10) {
+                throw new IllegalArgumentException("Số điện thoại phải có đúng 10 chữ số!");
+            }
+
+            System.out.println("Nhập nhóm:");
+            int nhom = Integer.parseInt(sc.nextLine());
+
+            System.out.println("Nhập họ và tên:");
+            String hovaten = sc.nextLine();
+
+            System.out.println("Nhập giới tính:");
+            String sex = sc.nextLine();
+
+            System.out.println("Nhập địa chỉ:");
+            String diachi = sc.nextLine();
+
+            System.out.println("Nhập ngày sinh:");
+            String ngaysinh = sc.nextLine();
+
+            System.out.println("Nhập email:");
+            String email = sc.nextLine();
+            if (!isValidEmail(email)) {
+                throw new IllegalArgumentException(ERROR_EMAIL);
+            }
+
+            return new Contact(sdt, nhom, hovaten, sex, diachi, ngaysinh, email);
+        } catch (Exception e) {
+            System.out.println("Lỗi nhập liệu: " + e.getMessage());
+            return null;
+        }
+    }
+    // Kiểm tra số điện thoại hợp lệ
+    private boolean isValidPhone(String phone) {
+        return phone.matches(PHONE_REGEX);
+    }
+
+    // Kiểm tra email hợp lệ
+    private boolean isValidEmail(String email) {
+        return email.matches(EMAIL_REGEX);
+    }
+}
 

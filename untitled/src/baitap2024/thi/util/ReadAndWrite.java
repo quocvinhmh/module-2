@@ -1,7 +1,7 @@
 package baitap2024.thi.util;
 
 
-import baitap2024.thi.mod.QuanLy;
+import baitap2024.thi.mod.Contact;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -9,15 +9,15 @@ import java.util.List;
 
 public class ReadAndWrite {
     private static final String File_DANHBA = "src/baitap2024/thi/data/data/contacts.csv";
-    public static List<QuanLy> read() {
-      List<QuanLy> danhba = new ArrayList<>();
+    public static List<Contact> read() {
+      List<Contact> danhba = new ArrayList<>();
       File file = new File(File_DANHBA);
-        FileReader fr = null;
-      BufferedReader br = null;
+        FileReader fr;
+      BufferedReader br;
       try{
           fr = new FileReader(file);
            br = new BufferedReader(fr);
-           String line = null;
+           String line;
            do {
                if ((line = br.readLine())!= null) {
                   String sdt =line.split(",")[0];
@@ -27,7 +27,7 @@ String sex = line.split(",")[3];
 String id = line.split(",")[4];
 String born = line.split(",")[5];
 String email = line.split(",")[6];
-danhba.add(new QuanLy(sdt,nhom,hovaten,sex,id,born,email));
+danhba.add(new Contact(sdt,nhom,hovaten,sex,id,born,email));
                }
            }while (line != null);
            br.close();
@@ -40,12 +40,12 @@ danhba.add(new QuanLy(sdt,nhom,hovaten,sex,id,born,email));
       }
     return danhba;
     }
-    public static void write(List<QuanLy> danhba) throws IOException {
+    public static void write(List<Contact> danhba) throws IOException {
         File file = new File(File_DANHBA);
         FileWriter fr = new FileWriter(file,false);
         BufferedWriter bw = new BufferedWriter(fr);
         boolean flag = true ;
-        for (QuanLy o : danhba) {
+        for (Contact o : danhba) {
             if (!flag) {
                 bw.newLine();
             }
